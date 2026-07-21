@@ -40,7 +40,7 @@ const DEFAULT_SETTINGS = {
 };
 
 async function seedAdmin() {
-  const existing = await db.execute({ sql: 'SELECT id FROM admin WHERE id = 1' });
+  const existing = await db.execute({ sql: 'SELECT id FROM admin WHERE id = 1', args: [] });
   if (existing.rows.length > 0) {
     console.log('· Admin account already exists — skipping.');
     return;
@@ -78,7 +78,7 @@ async function seedSettings() {
 }
 
 async function seedVoiceArtists() {
-  const existing = await db.execute({ sql: 'SELECT COUNT(*) as c FROM voice_artists' });
+  const existing = await db.execute({ sql: 'SELECT COUNT(*) as c FROM voice_artists', args: [] });
   if (Number(existing.rows[0].c) > 0) {
     console.log('· Voice artist roster already has entries — skipping.');
     return;
@@ -93,7 +93,7 @@ async function seedVoiceArtists() {
 }
 
 async function seedDemoEpisode() {
-  const existing = await db.execute({ sql: 'SELECT COUNT(*) as c FROM episodes' });
+  const existing = await db.execute({ sql: 'SELECT COUNT(*) as c FROM episodes', args: [] });
   if (Number(existing.rows[0].c) > 0) {
     console.log('· Episodes table already has entries — skipping demo episode.');
     return;
